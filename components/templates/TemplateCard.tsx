@@ -9,6 +9,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 import Icon from '@/components/ui/icon';
+import { Label } from '@/components/ui/label';
 
 export interface TemplateCardProps {
   name: string;
@@ -32,18 +33,17 @@ export function TemplateCard({
       type="button"
       onClick={onClick}
       className={cn(
-        'group relative flex flex-col overflow-hidden rounded-xl border bg-background transition-all hover:border-blue-500/50 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500/50',
-        selected && 'border-blue-500 ring-2 ring-blue-500/50'
+        'group relative flex flex-col overflow-hidden',
       )}
     >
       {/* Preview Image */}
-      <div className="relative aspect-[16/10] w-full overflow-hidden bg-muted">
+      <div className="relative w-full overflow-hidden bg-muted rounded-lg cursor-pointer">
         {preview ? (
           /* eslint-disable-next-line @next/next/no-img-element */
           <img
             src={preview}
             alt={`${name} preview`}
-            className="h-full w-full object-cover object-top transition-transform group-hover:scale-105"
+            className="h-full w-full object-cover object-top transition-transform group-hover:scale-[1.02]"
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
@@ -74,11 +74,8 @@ export function TemplateCard({
       </div>
 
       {/* Content */}
-      <div className="flex flex-1 flex-col p-4">
-        <h3 className="text-sm font-semibold text-foreground">{name}</h3>
-        <p className="mt-1 line-clamp-2 text-xs text-muted-foreground">
-          {description}
-        </p>
+      <div className="flex flex-1 flex-col py-4">
+        <Label>{name}</Label>
 
         {/* Live Preview Link */}
         {livePreviewUrl && (

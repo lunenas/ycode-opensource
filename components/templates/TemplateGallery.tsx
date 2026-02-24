@@ -9,7 +9,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { TemplateCard } from './TemplateCard';
 import { TemplateApplyDialog } from './TemplateApplyDialog';
-import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/ui/spinner';
 import { EmptyState } from '@/components/ui/empty-state';
 import {
@@ -105,12 +104,7 @@ export function TemplateGallery({
 
   const handleTemplateClick = (template: Template) => {
     setSelectedTemplate(template);
-  };
-
-  const handleApplyClick = () => {
-    if (selectedTemplate) {
-      setShowApplyDialog(true);
-    }
+    setShowApplyDialog(true);
   };
 
   const handleApplySuccess = () => {
@@ -182,7 +176,6 @@ export function TemplateGallery({
             description={template.description}
             preview={template.preview}
             livePreviewUrl={template.livePreviewUrl}
-            selected={selectedTemplate?.id === template.id}
             onClick={() => handleTemplateClick(template)}
           />
         ))}
@@ -195,15 +188,6 @@ export function TemplateGallery({
           title="No templates in this category"
           description="Try selecting a different category."
         />
-      )}
-
-      {/* Apply Button */}
-      {selectedTemplate && (
-        <div className="mt-6 flex justify-center">
-          <Button onClick={handleApplyClick} size="lg">
-            Apply &ldquo;{selectedTemplate.name}&rdquo; Template
-          </Button>
-        </div>
       )}
 
       {/* Apply Confirmation Dialog */}

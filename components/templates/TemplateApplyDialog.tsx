@@ -89,10 +89,10 @@ export function TemplateApplyDialog({
       >
         <DialogHeader>
           <DialogTitle>
-            Apply Template
+            Apply {template.name} template
           </DialogTitle>
           <DialogDescription>
-            You are about to apply the <strong>&ldquo;{template.name}&rdquo;</strong>{' '}
+            You are about to apply the <span className="font-medium">{template.name}</span>{' '}
             template to your project.
           </DialogDescription>
         </DialogHeader>
@@ -100,21 +100,27 @@ export function TemplateApplyDialog({
         <div>
 
           {/* Warning Box */}
-          <div className="rounded-lg border border-destructive/30 bg-destructive/5 p-4">
-            <h4 className="mb-2 text-sm font-semibold text-destructive">
+          <div className="-mt-3 text-muted-foreground">
+            <div className="mb-3">
               This action will:
-            </h4>
-            <ul className="space-y-1 text-xs text-muted-foreground">
+            </div>
+            <ul className="flex flex-col gap-2.5 text-xs ">
               <li className="flex items-start gap-2">
-                <span className="text-destructive">•</span>
+                <div className="size-4 bg-destructive/10 flex items-center justify-center rounded-full">
+                  <Icon name="check" className="size-3.5 text-destructive" />
+                </div>
                 Replace all your pages, collections, and components
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-destructive">•</span>
+                <div className="size-4 bg-destructive/10 flex items-center justify-center rounded-full">
+                  <Icon name="check" className="size-3.5 text-destructive" />
+                </div>
                 Remove any existing template assets
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-green-600">•</span>
+                <div className="size-4 bg-green-500/20 flex items-center justify-center rounded-full">
+                  <Icon name="check" className="size-3.5" />
+                </div>
                 Keep your uploaded assets and settings
               </li>
             </ul>
@@ -130,21 +136,21 @@ export function TemplateApplyDialog({
 
         <DialogFooter className="sm:justify-between">
           <Button
-            variant="destructive"
-            size="sm"
-            onClick={handleApply}
-            disabled={loading}
-          >
-            {loading && <Spinner />}
-            {loading ? 'Applying...' : 'Apply Template'}
-          </Button>
-          <Button
             variant="secondary"
             size="sm"
             onClick={handleCancel}
             disabled={loading}
           >
             Cancel
+          </Button>
+          <Button
+            variant="destructive"
+            size="sm"
+            onClick={handleApply}
+            disabled={loading}
+          >
+            {loading && <Spinner />}
+            {loading ? null : 'Apply template'}
           </Button>
         </DialogFooter>
       </DialogContent>
